@@ -1,24 +1,29 @@
 package com.algometric.backend;
 
-import java.util.LinkedList;
+import org.springframework.stereotype.Component;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
-// DSA Concept: Custom Queue Implementation
-// We will use this to hold code analysis jobs before processing
+@Component
 public class JobQueue {
-    private LinkedList<String> queue;
-    
+    // DSA Concept: Storing Complex Objects in a FIFO Queue
+    private final Queue<Job> queue;
+
     public JobQueue() {
-        this.queue = new LinkedList<>();
+        this.queue = new ConcurrentLinkedQueue<>();
     }
 
-    public void enqueue(String jobID) {
-        // TODO: Implement Logic
-        queue.addLast(jobID);
+    public void enqueue(Job job) {
+        queue.add(job);
+        System.out.println("LOG: Job added: " + job.getId());
     }
 
-    public String dequeue() {
-        // TODO: Implement Logic
+    public Job dequeue() {
         if (queue.isEmpty()) return null;
-        return queue.removeFirst();
+        return queue.poll();
+    }
+
+    public int getSize() {
+        return queue.size();
     }
 }
