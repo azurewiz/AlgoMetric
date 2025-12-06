@@ -1,0 +1,25 @@
+# General
+.DS_Store
+.vscode/
+
+# Java
+*.class
+*.jar
+*.war
+target/
+.mvn/
+
+# C
+*.o
+*.exe
+*.dll
+*.so
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Flutter
+/frontend_app/build/
+/frontend_app/.dart_tool/
