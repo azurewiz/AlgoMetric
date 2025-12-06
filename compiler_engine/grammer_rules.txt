@@ -1,0 +1,31 @@
+# AlgoMetric Constraint Language (ACL) Specification v1.0
+
+# 1. GRAMMAR (BNF Notation)
+# -------------------------
+# Statement   ::= <Command> <Attribute> <Operator> <Value> ";"
+# Command     ::= "ENSURE" | "LIMIT"
+# Attribute   ::= "TIME_COMPLEXITY" | "SPACE_COMPLEXITY" | "LOOPS" | "RECURSION"
+# Operator    ::= "<" | ">" | "=" | "IS"
+# Value       ::= <BigO> | <Number> | <Boolean>
+# BigO        ::= "O(1)" | "O(N)" | "O(N^2)" | "O(logN)"
+# Boolean     ::= "TRUE" | "FALSE"
+
+# 2. VALID EXAMPLES (Test Cases)
+# ------------------------------
+# Example 1: Enforce efficiency
+ENSURE TIME_COMPLEXITY < O(N^2);
+
+# Example 2: Prevent memory leaks / heavy usage
+LIMIT SPACE_COMPLEXITY < O(N);
+
+# Example 3: Forbid recursion (often safer for embedded systems)
+ENSURE RECURSION IS FALSE;
+
+# Example 4: Hard limit on loops to prevent infinite loops
+LIMIT LOOPS < 3;
+
+# 3. TOKEN LIST (For Lexer)
+# -------------------------
+# TOKEN_COMMAND: [A-Z]+
+# TOKEN_OPERATOR: [<>=]
+# TOKEN_END: ;
